@@ -24,6 +24,10 @@ const navItems = [
         url: "/",
     },
     {
+        title: "New Post",
+        url: "/newblog",
+    },
+    {
         title: "About",
         url: "/about/",
     },
@@ -46,9 +50,9 @@ export default function Navbar(props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
+            <Button variant="h6" sx={{ my: 2 }} onClick={() => navigate("/")}>
                 BLOGGY
-            </Typography>
+            </Button>
             <Divider />
             <List>
                 {navItems.map((item) => (
@@ -72,7 +76,9 @@ export default function Navbar(props) {
         <Box sx={{ display: "flex" }}>
             <CssBaseline />
             <AppBar component="nav">
-                <Toolbar>
+                <Toolbar
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                >
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -82,16 +88,20 @@ export default function Navbar(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{
-                            flexGrow: 1,
-                            display: { xs: "none", sm: "block" },
-                        }}
-                    >
-                        BLOGGY
-                    </Typography>
+                    <Box>
+                        <Button
+                            variant="h6"
+                            component="button"
+                            sx={{
+                                flexGrow: 1,
+                                display: { xs: "none", sm: "inline-block" },
+                                fontSize: "24px",
+                            }}
+                            onClick={() => navigate("/")}
+                        >
+                            BLOGGY
+                        </Button>
+                    </Box>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {navItems.map((item) => (
                             <Button

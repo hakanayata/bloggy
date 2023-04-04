@@ -6,13 +6,13 @@ import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { blueGrey, blue } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 
 export default function PostCard({ blog }) {
     return (
-        <Card sx={{ maxWidth: 345, boxShadow: 15, borderRadius: 3 }}>
+        <Card sx={{ maxWidth: 345, boxShadow: 15, borderRadius: 2 }}>
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
@@ -28,6 +28,7 @@ export default function PostCard({ blog }) {
                 image={blog?.image}
                 alt="blog post"
                 referrerPolicy="no-referrer"
+                sx={{ objectFit: "contain" }}
             />
             <Typography
                 variant="h4"

@@ -11,12 +11,12 @@ export default function Home() {
     const { getBlogsData } = useBlogCalls();
 
     useEffect(() => {
-        getBlogsData();
+        getBlogsData("blogs");
     }, []); // eslint-disable-line
 
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             {/* TODO: BLOG POSTS */}
             <Grid container sx={flex}>
                 {blogs?.map((blog) => {

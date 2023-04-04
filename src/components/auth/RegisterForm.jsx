@@ -54,7 +54,6 @@ const RegisterForm = ({
                         onBlur={handleBlur}
                         error={touched.username && !!errors.username}
                         helperText={touched.username && errors.username}
-                        autoFocus
                     />
                     {/* <TextField
                         label="First Name"
