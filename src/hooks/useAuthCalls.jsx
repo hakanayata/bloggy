@@ -26,7 +26,7 @@ const useAuthCalls = () => {
             );
             dispatch(loginSuccess(data));
             toastSuccessNotify("Signed in!");
-            navigate("/");
+            navigate(-2);
         } catch (error) {
             console.log(error);
             dispatch(fetchFail());

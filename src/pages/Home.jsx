@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import useBlogCalls from "../hooks/useBlogCalls";
-import PostCard from "../components/blog/PostCard";
+import BlogCard from "../components/blog/BlogCard";
 import Grid from "@mui/material/Grid";
 import { flex } from "../styles/globalStyles";
 import { useEffect } from "react";
@@ -22,7 +22,7 @@ export default function Home() {
                 {blogs?.map((blog) => {
                     return (
                         <Grid item key={blog.id}>
-                            <PostCard blog={blog} />
+                            <BlogCard blog={blog} />
                         </Grid>
                     );
                 })}

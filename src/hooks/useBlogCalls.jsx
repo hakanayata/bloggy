@@ -1,6 +1,11 @@
 import { useDispatch } from "react-redux";
 import useAxios from "./useAxios";
-import { fetchStart, getSuccess, fetchFail } from "../features/blogSlice";
+import {
+    fetchStart,
+    getSuccess,
+    getSuccessDetails,
+    fetchFail,
+} from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const useBlogCalls = () => {
@@ -12,6 +17,18 @@ const useBlogCalls = () => {
         try {
             const { data } = await axiosPublic.get(`api/${url}/`);
             dispatch(getSuccess({ url, data }));
+        } catch (error) {
+            console.log(error);
+            dispatch(fetchFail());
+            toastErrorNotify("Couldn't fetch data!");
+        }
+    };
+
+    const getBlogsDetails = async (url, id) => {
+        dispatch(fetchStart());
+        try {
+            const { data } = await axiosWithToken.get(`api/${url}/${id}`);
+            dispatch(getSuccessDetails({ data }));
         } catch (error) {
             console.log(error);
             dispatch(fetchFail());
@@ -32,7 +49,7 @@ const useBlogCalls = () => {
         }
     };
 
-    return { getBlogsData, postBlogData };
+    return { getBlogsData, getBlogsDetails, postBlogData };
 };
 
 export default useBlogCalls;

@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import useAuthCalls from "../hooks/useAuthCalls";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
 
 const Register = () => {
     const { register } = useAuthCalls();
@@ -48,6 +50,16 @@ const Register = () => {
                         actions.setSubmitting();
                     }}
                 ></Formik>
+                <Box
+                    sx={{
+                        marginTop: 2,
+                    }}
+                >
+                    <Typography variant="small">
+                        Do you have an account?{" "}
+                    </Typography>
+                    <Link to="/login">Sign in now ➚</Link>
+                </Box>
             </Grid>
         </Container>
     );

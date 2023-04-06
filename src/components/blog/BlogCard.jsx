@@ -8,9 +8,24 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { blue } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+import CommentIcon from "@mui/icons-material/Comment";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { toastWarnNotify } from "../../helper/ToastNotify";
+import { useSelector } from "react-redux";
 
-export default function PostCard({ blog }) {
+export default function BlogCard({ blog }) {
+    const { currentUser } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+    const handleNavigation = () => {
+        if (currentUser) {
+            navigate(`details/${blog?.id}`);
+        } else {
+            navigate(`details/${blog?.id}`);
+            toastWarnNotify("You have to sign in for this action!");
+        }
+    };
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 15, borderRadius: 2 }}>
             <CardHeader
@@ -47,10 +62,29 @@ export default function PostCard({ blog }) {
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
+                    <Typography variant="small" component="small">
+                        {blog?.likes}
+                    </Typography>
                 </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
+                <IconButton aria-label="comment">
+                    <CommentIcon />
+                    <Typography variant="small" component="small">
+                        {blog?.comment_count}
+                    </Typography>
                 </IconButton>
+                <IconButton aria-label="views">
+                    <RemoveRedEyeIcon />
+                    <Typography variant="small" component="small">
+                        {blog?.post_views}
+                    </Typography>
+                </IconButton>
+                <Button
+                    variant="outlined"
+                    sx={{ ml: 6 }}
+                    onClick={() => handleNavigation()}
+                >
+                    Read More
+                </Button>
             </CardActions>
         </Card>
     );

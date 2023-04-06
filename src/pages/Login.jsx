@@ -58,7 +58,7 @@ export default function Login() {
                     <Typography variant="small">
                         Don't have an account?{" "}
                     </Typography>
-                    <Link to="register">Sign up now ➚</Link>
+                    <Link to="/register">Sign up now ➚</Link>
                 </Box>
             </Grid>
         </Container>

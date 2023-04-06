@@ -4,10 +4,13 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import NewBlogForm, { newBlogSchema } from "../components/blog/NewBlogForm";
 import useBlogCalls from "../hooks/useBlogCalls";
+import { useNavigate } from "react-router-dom";
 
 // HDD: https://cdn.pixabay.com/photo/2023/03/27/07/59/hdd-7880077_1280.jpg
+// chess: https://cdn.pixabay.com/photo/2020/01/26/10/33/chess-4794265_1280.jpg
 
 const NewBlog = () => {
+    const navigate = useNavigate();
     const { postBlogData } = useBlogCalls();
     return (
         <Container maxWidth="lg">
@@ -36,7 +39,7 @@ const NewBlog = () => {
                         content: "",
                         image: "",
                         category: "",
-                        status: "p",
+                        status: "",
                     }}
                     validationSchema={newBlogSchema}
                     component={(props) => <NewBlogForm {...props} />}
@@ -45,6 +48,7 @@ const NewBlog = () => {
                         // console.log(actions);
                         actions.resetForm();
                         actions.setSubmitting();
+                        navigate("/");
                     }}
                 ></Formik>
             </Grid>

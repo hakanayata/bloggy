@@ -50,7 +50,11 @@ export default function Navbar(props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-            <Button variant="h6" sx={{ my: 2 }} onClick={() => navigate("/")}>
+            <Button
+                variant="text"
+                sx={{ my: 2, fontSize: "24px" }}
+                onClick={() => navigate("/")}
+            >
                 BLOGGY
             </Button>
             <Divider />
@@ -66,6 +70,25 @@ export default function Navbar(props) {
                     </ListItem>
                 ))}
             </List>
+            {currentUser ? (
+                <Button
+                    sx={{ color: "#fff" }}
+                    onClick={() => logout()}
+                    variant="contained"
+                    color="secondary"
+                >
+                    LOGOUT
+                </Button>
+            ) : (
+                <Button
+                    sx={{ color: "#fff" }}
+                    onClick={() => navigate("/login/")}
+                    variant="contained"
+                    color="success"
+                >
+                    LOGIN
+                </Button>
+            )}
         </Box>
     );
 
@@ -90,12 +113,13 @@ export default function Navbar(props) {
                     </IconButton>
                     <Box>
                         <Button
-                            variant="h6"
+                            variant="text"
                             component="button"
                             sx={{
                                 flexGrow: 1,
                                 display: { xs: "none", sm: "inline-block" },
                                 fontSize: "24px",
+                                color: "white",
                             }}
                             onClick={() => navigate("/")}
                         >
@@ -116,6 +140,8 @@ export default function Navbar(props) {
                             <Button
                                 sx={{ color: "#fff" }}
                                 onClick={() => logout()}
+                                variant="contained"
+                                color="secondary"
                             >
                                 LOGOUT
                             </Button>
@@ -123,6 +149,8 @@ export default function Navbar(props) {
                             <Button
                                 sx={{ color: "#fff" }}
                                 onClick={() => navigate("/login/")}
+                                variant="contained"
+                                color="success"
                             >
                                 LOGIN
                             </Button>

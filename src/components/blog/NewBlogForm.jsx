@@ -10,6 +10,7 @@ import { object, string, number } from "yup";
 import useBlogCalls from "../../hooks/useBlogCalls";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { TextareaAutosize } from "@mui/material";
 
 export const newBlogSchema = object({
     title: string().required("Must provide a title!"),
@@ -117,7 +118,7 @@ const NewBlogForm = ({ values, errors, touched, handleChange, handleBlur }) => {
                             ))}
                         </Select>
                     </FormControl>
-                    <TextField
+                    {/* <TextField
                         label="Content"
                         name="content"
                         id="content"
@@ -128,6 +129,25 @@ const NewBlogForm = ({ values, errors, touched, handleChange, handleBlur }) => {
                         onBlur={handleBlur}
                         error={touched.content && !!errors.content}
                         helperText={touched.content && errors.content}
+                    /> */}
+                    <TextareaAutosize
+                        aria-label="minimum height"
+                        minRows={5}
+                        placeholder="Enter content..."
+                        style={{
+                            width: "300px",
+                            border: "1px solid #ccc",
+                            borderRadius: "6px",
+                            padding: "12px",
+                            fontFamily: "Roboto, sans-serif",
+                            fontSize: "16px",
+                        }}
+                        label="Content"
+                        name="content"
+                        id="content"
+                        value={values.content}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <Button type="submit" variant="contained" size="large">
                         Post
