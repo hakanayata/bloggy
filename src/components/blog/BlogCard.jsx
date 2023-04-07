@@ -30,7 +30,7 @@ export default function BlogCard({ blog }) {
         <Card sx={{ maxWidth: 345, boxShadow: 15, borderRadius: 2 }}>
             <CardHeader
                 avatar={
-                    <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
+                    <Avatar sx={{ bgcolor: blue[500] }} aria-label="avatar">
                         {blog?.author?.slice(0, 1)}
                     </Avatar>
                 }

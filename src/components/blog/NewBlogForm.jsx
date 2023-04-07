@@ -118,19 +118,28 @@ const NewBlogForm = ({ values, errors, touched, handleChange, handleBlur }) => {
                             ))}
                         </Select>
                     </FormControl>
-                    {/* <TextField
+                    <TextField
                         label="Content"
                         name="content"
                         id="content"
                         type="text"
                         variant="outlined"
+                        multiline
+                        InputProps={{
+                            inputComponent: TextareaAutosize,
+                            inputProps: {
+                                style: {
+                                    resize: "auto",
+                                },
+                            },
+                        }}
                         value={values.content}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         error={touched.content && !!errors.content}
                         helperText={touched.content && errors.content}
-                    /> */}
-                    <TextareaAutosize
+                    />
+                    {/* <TextareaAutosize
                         aria-label="minimum height"
                         minRows={5}
                         placeholder="Enter content..."
@@ -148,7 +157,8 @@ const NewBlogForm = ({ values, errors, touched, handleChange, handleBlur }) => {
                         value={values.content}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                    />
+                        required
+                    /> */}
                     <Button type="submit" variant="contained" size="large">
                         Post
                     </Button>
