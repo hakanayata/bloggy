@@ -67,9 +67,8 @@ const useBlogCalls = () => {
     const updateBlog = async (id, info) => {
         dispatch(fetchStart());
         try {
-            axiosWithToken.put(`api/blogs/${id}/`, info);
+            await axiosWithToken.put(`api/blogs/${id}/`, info);
             toastSuccessNotify("Blog post updated successfully!");
-            // getBlogsData("blogs");
             getBlogsDetails("blogs", id);
         } catch (error) {
             console.log(error);
@@ -78,16 +77,28 @@ const useBlogCalls = () => {
         }
     };
 
-    const postComment = async (id, content) => {
+    const postComment = async (id, info) => {
         dispatch(fetchStart());
         try {
-            const { data } = axiosWithToken.post(`api/comments/${id}`, content);
-            dispatch(getSuccess(data));
+            await axiosWithToken.post(`api/comments/${id}/`, info);
+            toastSuccessNotify("Comment succesfully posted!");
+            getBlogsDetails("blogs", id);
         } catch (error) {
             console.log(error);
             toastErrorNotify(
                 "Error! Your comment could not be posted! Please try again later!"
             );
+        }
+    };
+
+    const createLike = async (id) => {
+        dispatch(fetchStart());
+        try {
+            await axiosWithToken.post(`api/likes/${id}/`);
+            getBlogsData("blogs");
+        } catch (error) {
+            console.log(error);
+            toastErrorNotify("Error! Please try again later!");
         }
     };
 
@@ -97,6 +108,8 @@ const useBlogCalls = () => {
         postBlogData,
         deleteBlog,
         updateBlog,
+        postComment,
+        createLike,
     };
 };
 

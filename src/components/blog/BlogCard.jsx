@@ -14,9 +14,12 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { toastWarnNotify } from "../../helper/ToastNotify";
 import { useSelector } from "react-redux";
+import useBlogCalls from "../../hooks/useBlogCalls";
+import { useState } from "react";
 
 export default function BlogCard({ blog }) {
     const { currentUser } = useSelector((state) => state.auth);
+    const { createLike, getBlogsDetails, getBlogsData } = useBlogCalls();
     const navigate = useNavigate();
     const handleNavigation = () => {
         if (currentUser) {
@@ -26,6 +29,20 @@ export default function BlogCard({ blog }) {
             toastWarnNotify("You have to sign in for this action!");
         }
     };
+
+    // const didILike =
+    //     blog.likes_n.filter((like) => currentUser.id === like.id).length === 1;
+
+    const [liked, setLiked] = useState(
+        blog.likes_n.filter((like) => currentUser.id === like.user_id)
+            .length === 1
+    );
+
+    const handleLike = () => {
+        setLiked(!liked);
+        createLike(blog.id);
+    };
+
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 15, borderRadius: 2 }}>
             <CardHeader
@@ -60,8 +77,12 @@ export default function BlogCard({ blog }) {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
+                <IconButton aria-label="add to favorites" onClick={handleLike}>
+                    <FavoriteIcon
+                        sx={{
+                            color: liked ? "red" : "gray",
+                        }}
+                    />
                     <Typography variant="small" component="small">
                         {blog?.likes}
                     </Typography>

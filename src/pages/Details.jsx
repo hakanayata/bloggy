@@ -18,19 +18,13 @@ import { flexCol } from "../styles/globalStyles";
 import Divider from "@mui/material/Divider";
 import DeleteModal from "../components/blog/DeleteModal";
 import UpdateModal from "../components/blog/UpdateModal";
-import { string, object } from "yup";
 import CommentCard from "../components/blog/CommentCard";
-
-export const commentSchema = object({
-    // id: string().required(),
-    content: string().min(1).required(),
-});
 
 export default function Details() {
     const { currentUser } = useSelector((state) => state.auth);
     const { id } = useParams();
     const { details } = useSelector((state) => state.blog);
-    const { getBlogsDetails, getBlogsData } = useBlogCalls();
+    const { getBlogsDetails, getBlogsData, createLike } = useBlogCalls();
 
     useEffect(() => {
         getBlogsData("categories");
@@ -50,8 +44,7 @@ export default function Details() {
         getBlogsDetails("blogs", id);
     }, []); // eslint-disable-line
 
-    // console.log(currentUser);
-    const isUserTheAuthor = currentUser === details?.author;
+    const isUserTheAuthor = currentUser?.username === details?.author;
 
     return (
         <Container
@@ -59,14 +52,14 @@ export default function Details() {
             sx={{
                 border: "1px navy solid",
                 borderRadius: "35px",
-                maxWidth: { xs: 375, sm: 600, md: 1000 },
+                maxWidth: { xs: 375, sm: 600, md: 880 },
                 p: 2,
                 mb: 4,
             }}
         >
             <Box
                 component="header"
-                maxWidth={{ xs: 375, sm: 600, md: 1000 }}
+                maxWidth={{ xs: 375, sm: 600, md: 880 }}
                 sx={{ display: "flex", gap: 3 }}
             >
                 <Avatar sx={{ bgcolor: blue[500] }} aria-label="avatar">
@@ -150,9 +143,9 @@ export default function Details() {
                 )}
             </Box>
             {showComments && <CommentCard />}
-            {/* <pre style={{ overflow: "hidden" }}>
+            <pre style={{ overflow: "hidden" }}>
                 {JSON.stringify(details, null, 2)}
-            </pre> */}
+            </pre>
         </Container>
     );
 }

@@ -1,18 +1,22 @@
-import { Form } from "formik";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Button from "@mui/material/Button";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import useBlogCalls from "../../hooks/useBlogCalls";
 
-export default function NewCommentForm({
-    values,
-    handleChange,
-    touched,
-    errors,
-    handleBlur,
-}) {
-    console.log(values);
+export default function NewCommentForm() {
+    const [comment, setComment] = useState("");
+    const { postComment } = useBlogCalls();
+    const { id } = useParams();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        postComment(id, { post: id, content: comment });
+    };
+
     return (
-        <Form>
+        <form onSubmit={handleSubmit}>
             <TextField
                 label="Comment"
                 name="comment"
@@ -30,18 +34,16 @@ export default function NewCommentForm({
                         },
                     },
                 }}
-                sx={
-                    {
-                        // maxHeight: 100,
-                        // overflow breaks label layout
-                        // overflow: "auto",
-                    }
-                }
-                value={values.comment}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.comment && !!errors.comment}
-                helperText={touched.comment && errors.comment}
+                required
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                // sx={
+                //     {
+                //         // maxHeight: 100,
+                //         // overflow breaks label layout
+                //         // overflow: "auto",
+                //     }
+                // }
             />
             <Button
                 type="submit"
@@ -52,6 +54,6 @@ export default function NewCommentForm({
             >
                 Send
             </Button>
-        </Form>
+        </form>
     );
 }
