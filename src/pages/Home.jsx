@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import Navbar from "../components/Navbar";
 import useBlogCalls from "../hooks/useBlogCalls";
 import BlogCard from "../components/blog/BlogCard";
 import Grid from "@mui/material/Grid";
@@ -18,7 +17,7 @@ export default function Home() {
         <div>
             {/* <Navbar /> */}
             {/* TODO: BLOG POSTS */}
-            <Grid container sx={flex}>
+            <Grid container sx={flex} mb={8}>
                 {blogs?.map((blog) => {
                     return (
                         <Grid item key={blog.id}>

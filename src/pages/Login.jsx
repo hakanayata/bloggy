@@ -47,7 +47,7 @@ export default function Login() {
                         login(values);
                         // console.log(actions);
                         actions.resetForm();
-                        actions.setSubmitting();
+                        actions.setSubmitting(false);
                     }}
                 ></Formik>
                 <Box

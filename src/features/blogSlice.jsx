@@ -6,6 +6,7 @@ const blogSlice = createSlice({
         blogs: [],
         categories: [],
         details: [],
+        comments: [],
         loading: false,
         error: false,
     },

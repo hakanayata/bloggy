@@ -18,7 +18,7 @@ export const styleModal = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 350,
+    width: { xs: 350, sm: 600, md: 800 },
     minHeight: 200,
     display: "flex",
     flexDirection: "column",
@@ -28,5 +28,5 @@ export const styleModal = {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
-    gap: 5,
+    gap: 3,
 };

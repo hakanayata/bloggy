@@ -18,6 +18,13 @@ import { flexCol } from "../styles/globalStyles";
 import Divider from "@mui/material/Divider";
 import DeleteModal from "../components/blog/DeleteModal";
 import UpdateModal from "../components/blog/UpdateModal";
+import { string, object } from "yup";
+import CommentCard from "../components/blog/CommentCard";
+
+export const commentSchema = object({
+    // id: string().required(),
+    content: string().min(1).required(),
+});
 
 export default function Details() {
     const { currentUser } = useSelector((state) => state.auth);
@@ -29,13 +36,7 @@ export default function Details() {
         getBlogsData("categories");
     }, []); //eslint-disable-line
 
-    // const [modalInfo, setModalInfo] = useState({
-    //     title: "",
-    //     image: "",
-    //     category: "",
-    //     status: "",
-    //     content: "",
-    // });
+    const [showComments, setShowComments] = useState(false);
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -57,14 +58,15 @@ export default function Details() {
             component="div"
             sx={{
                 border: "1px navy solid",
-                borderRadius: "18px",
-                maxWidth: { xs: 350, sm: 500, md: 1000 },
+                borderRadius: "35px",
+                maxWidth: { xs: 375, sm: 600, md: 1000 },
                 p: 2,
+                mb: 4,
             }}
         >
             <Box
                 component="header"
-                maxWidth={{ xs: 300, sm: 500, md: 1000 }}
+                maxWidth={{ xs: 375, sm: 600, md: 1000 }}
                 sx={{ display: "flex", gap: 3 }}
             >
                 <Avatar sx={{ bgcolor: blue[500] }} aria-label="avatar">
@@ -106,7 +108,10 @@ export default function Details() {
                             {details?.likes}
                         </Typography>
                     </IconButton>
-                    <IconButton aria-label="comment">
+                    <IconButton
+                        aria-label="comment"
+                        onClick={() => setShowComments(!showComments)}
+                    >
                         <CommentIcon />
                         <Typography variant="small" component="small">
                             {details?.comment_count}
@@ -119,34 +124,35 @@ export default function Details() {
                         </Typography>
                     </IconButton>
                 </Stack>
-                {/* {isUserTheAuthor && ( */}
-                <Stack direction="row">
-                    <IconButton
-                        onClick={() => {
-                            handleOpenUpdate();
-                        }}
-                    >
-                        <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={handleOpen}>
-                        <DeleteIcon color="error" />
-                    </IconButton>
-                    <DeleteModal
-                        open={open}
-                        handleClose={handleClose}
-                        id={details.id}
-                    />
-                    <UpdateModal
-                        openUpdate={openUpdate}
-                        handleCloseUpdate={handleCloseUpdate}
-                        id={details.id}
-                    />
-                </Stack>
-                {/* )} */}
+                {isUserTheAuthor && (
+                    <Stack direction="row">
+                        <IconButton
+                            onClick={() => {
+                                handleOpenUpdate();
+                            }}
+                        >
+                            <EditIcon />
+                        </IconButton>
+                        <IconButton onClick={handleOpen}>
+                            <DeleteIcon color="error" />
+                        </IconButton>
+                        <DeleteModal
+                            open={open}
+                            handleClose={handleClose}
+                            id={details.id}
+                        />
+                        <UpdateModal
+                            openUpdate={openUpdate}
+                            handleCloseUpdate={handleCloseUpdate}
+                            id={details.id}
+                        />
+                    </Stack>
+                )}
             </Box>
-            <pre style={{ overflow: "hidden" }}>
+            {showComments && <CommentCard />}
+            {/* <pre style={{ overflow: "hidden" }}>
                 {JSON.stringify(details, null, 2)}
-            </pre>
+            </pre> */}
         </Container>
     );
 }

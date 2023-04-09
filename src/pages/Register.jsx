@@ -47,7 +47,7 @@ const Register = () => {
                         register(values);
                         // console.log(actions);
                         actions.resetForm();
-                        actions.setSubmitting();
+                        actions.setSubmitting(false);
                     }}
                 ></Formik>
                 <Box

@@ -65,7 +65,7 @@ const useBlogCalls = () => {
     };
 
     const updateBlog = async (id, info) => {
-        dispatch(fetchFail);
+        dispatch(fetchStart());
         try {
             axiosWithToken.put(`api/blogs/${id}/`, info);
             toastSuccessNotify("Blog post updated successfully!");
@@ -75,6 +75,19 @@ const useBlogCalls = () => {
             console.log(error);
             dispatch(fetchFail());
             toastErrorNotify("Could not update blog post. Try again later.");
+        }
+    };
+
+    const postComment = async (id, content) => {
+        dispatch(fetchStart());
+        try {
+            const { data } = axiosWithToken.post(`api/comments/${id}`, content);
+            dispatch(getSuccess(data));
+        } catch (error) {
+            console.log(error);
+            toastErrorNotify(
+                "Error! Your comment could not be posted! Please try again later!"
+            );
         }
     };
 
