@@ -13,7 +13,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { blue } from "@mui/material/colors";
+import blue from "@mui/material/colors/blue";
 import { flexCol } from "../styles/globalStyles";
 import Divider from "@mui/material/Divider";
 import DeleteModal from "../components/blog/DeleteModal";
@@ -21,15 +21,26 @@ import UpdateModal from "../components/blog/UpdateModal";
 import CommentCard from "../components/blog/CommentCard";
 
 export default function Details() {
+    const { getBlogsDetails, getBlogsData, toggleLike } = useBlogCalls();
     const { currentUser } = useSelector((state) => state.auth);
     const { id } = useParams();
     const { details } = useSelector((state) => state.blog);
-    const { getBlogsDetails, getBlogsData, createLike } = useBlogCalls();
+
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
+        getBlogsDetails("blogs", id);
         getBlogsData("categories");
-    }, []); //eslint-disable-line
+    }, []); // eslint-disable-line
 
+    useEffect(() => {
+        setLiked(
+            details?.likes_n?.filter((like) => currentUser.id === like.user_id)
+                .length === 1
+        );
+    }, [details]); //eslint-disable-line
+
+    //#region COMMENTS
     const [showComments, setShowComments] = useState(false);
 
     const [open, setOpen] = useState(false);
@@ -39,12 +50,14 @@ export default function Details() {
     const [openUpdate, setOpenUpdate] = useState(false);
     const handleOpenUpdate = () => setOpenUpdate(true);
     const handleCloseUpdate = () => setOpenUpdate(false);
-
-    useEffect(() => {
-        getBlogsDetails("blogs", id);
-    }, []); // eslint-disable-line
+    //#endregion
 
     const isUserTheAuthor = currentUser?.username === details?.author;
+
+    const handleLike = () => {
+        toggleLike(details?.id);
+        setLiked(!liked);
+    };
 
     return (
         <Container
@@ -95,8 +108,11 @@ export default function Details() {
                 }}
             >
                 <Stack direction="row">
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
+                    <IconButton
+                        aria-label="add to favorites"
+                        onClick={handleLike}
+                    >
+                        <FavoriteIcon sx={{ color: liked ? "red" : "gray" }} />
                         <Typography variant="small" component="small">
                             {details?.likes}
                         </Typography>

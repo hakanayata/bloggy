@@ -14,7 +14,7 @@ export default function UpdateModal({ openUpdate, handleCloseUpdate, id }) {
     const handleSubmit = (values, actions) => {
         handleCloseUpdate();
         updateBlog(id, values);
-        // actions.setSubmitting(false);
+        actions.setSubmitting(false);
     };
     return (
         <div>

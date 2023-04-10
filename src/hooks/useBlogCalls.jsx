@@ -91,11 +91,12 @@ const useBlogCalls = () => {
         }
     };
 
-    const createLike = async (id) => {
+    const toggleLike = async (id) => {
         dispatch(fetchStart());
         try {
             await axiosWithToken.post(`api/likes/${id}/`);
             getBlogsData("blogs");
+            getBlogsDetails("blogs", id);
         } catch (error) {
             console.log(error);
             toastErrorNotify("Error! Please try again later!");
@@ -109,7 +110,7 @@ const useBlogCalls = () => {
         deleteBlog,
         updateBlog,
         postComment,
-        createLike,
+        toggleLike,
     };
 };
 

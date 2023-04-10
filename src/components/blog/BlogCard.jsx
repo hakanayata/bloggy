@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,20 +9,17 @@ import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { blue } from "@mui/material/colors";
+import blue from "@mui/material/colors/blue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 import { toastWarnNotify } from "../../helper/ToastNotify";
-import { useSelector } from "react-redux";
 import useBlogCalls from "../../hooks/useBlogCalls";
-import { useState } from "react";
 
 export default function BlogCard({ blog }) {
     const { currentUser } = useSelector((state) => state.auth);
-    const { createLike, getBlogsDetails, getBlogsData } = useBlogCalls();
+    const { toggleLike } = useBlogCalls();
     const navigate = useNavigate();
     const handleNavigation = () => {
         if (currentUser) {
@@ -30,17 +30,16 @@ export default function BlogCard({ blog }) {
         }
     };
 
-    // const didILike =
-    //     blog.likes_n.filter((like) => currentUser.id === like.id).length === 1;
-
     const [liked, setLiked] = useState(
-        blog.likes_n.filter((like) => currentUser.id === like.user_id)
-            .length === 1
+        currentUser
+            ? blog.likes_n.filter((like) => currentUser.id === like.user_id)
+                  .length === 1
+            : false
     );
 
     const handleLike = () => {
         setLiked(!liked);
-        createLike(blog.id);
+        toggleLike(blog.id);
     };
 
     return (
@@ -87,13 +86,13 @@ export default function BlogCard({ blog }) {
                         {blog?.likes}
                     </Typography>
                 </IconButton>
-                <IconButton aria-label="comment">
+                <IconButton aria-label="comment" disabled>
                     <CommentIcon />
                     <Typography variant="small" component="small">
                         {blog?.comment_count}
                     </Typography>
                 </IconButton>
-                <IconButton aria-label="views">
+                <IconButton aria-label="views" disabled>
                     <RemoveRedEyeIcon />
                     <Typography variant="small" component="small">
                         {blog?.post_views}

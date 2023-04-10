@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
@@ -24,7 +25,7 @@ export default function AppRouter() {
                 <Route path="newblog" element={<PrivateRouter />}>
                     <Route path="" element={<NewBlog />} />
                 </Route>
-                {/* <Route path="*" element={<NotFound />} /> */}
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );

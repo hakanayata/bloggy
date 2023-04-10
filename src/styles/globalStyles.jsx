@@ -26,6 +26,7 @@ export const styleModal = {
     alignItems: "center",
     bgcolor: "background.paper",
     border: "2px solid #000",
+    borderRadius: "35px",
     boxShadow: 24,
     p: 4,
     gap: 3,
