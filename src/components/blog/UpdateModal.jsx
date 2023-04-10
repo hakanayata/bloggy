@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 export default function UpdateModal({ openUpdate, handleCloseUpdate, id }) {
     const { updateBlog } = useBlogCalls();
-    const { details } = useSelector((state) => state.blog);
+    const details = useSelector((state) => state.blog.details);
     const handleSubmit = (values, actions) => {
         handleCloseUpdate();
         updateBlog(id, values);

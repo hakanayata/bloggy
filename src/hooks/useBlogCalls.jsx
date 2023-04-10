@@ -86,7 +86,7 @@ const useBlogCalls = () => {
         } catch (error) {
             console.log(error);
             toastErrorNotify(
-                "Error! Your comment could not be posted! Please try again later!"
+                "Comment could not be posted! Please try again later!"
             );
         }
     };
@@ -96,11 +96,13 @@ const useBlogCalls = () => {
         try {
             await axiosWithToken.post(`api/likes/${id}/`);
             getBlogsData("blogs");
-            getBlogsDetails("blogs", id);
+            await getBlogsDetails("blogs", id);
+            return true;
         } catch (error) {
             console.log(error);
             toastErrorNotify("Error! Please try again later!");
         }
+        return false;
     };
 
     return {

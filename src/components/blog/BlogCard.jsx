@@ -14,19 +14,20 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Button from "@mui/material/Button";
-import { toastWarnNotify } from "../../helper/ToastNotify";
+import { toastErrorNotify, toastWarnNotify } from "../../helper/ToastNotify";
 import useBlogCalls from "../../hooks/useBlogCalls";
 
 export default function BlogCard({ blog }) {
-    const { currentUser } = useSelector((state) => state.auth);
+    const currentUser = useSelector((state) => state.auth.currentUser);
     const { toggleLike } = useBlogCalls();
     const navigate = useNavigate();
+
     const handleNavigation = () => {
         if (currentUser) {
             navigate(`details/${blog?.id}`);
         } else {
             navigate(`details/${blog?.id}`);
-            toastWarnNotify("You have to sign in for this action!");
+            toastWarnNotify("You must be signed in!");
         }
     };
 
@@ -38,8 +39,11 @@ export default function BlogCard({ blog }) {
     );
 
     const handleLike = () => {
-        setLiked(!liked);
-        toggleLike(blog.id);
+        if (currentUser) {
+            toggleLike(blog.id).then((success) => success && setLiked(!liked));
+        } else {
+            toastErrorNotify("You must be signed in!");
+        }
     };
 
     return (

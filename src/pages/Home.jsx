@@ -6,7 +6,7 @@ import { flex } from "../styles/globalStyles";
 import { useEffect } from "react";
 
 export default function Home() {
-    const { blogs } = useSelector((state) => state.blog);
+    const blogs = useSelector((state) => state.blog.blogs);
     const { getBlogsData } = useBlogCalls();
 
     useEffect(() => {

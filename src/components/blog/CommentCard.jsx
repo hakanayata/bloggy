@@ -6,7 +6,7 @@ import NewCommentForm from "./NewCommentForm";
 import { blue } from "@mui/material/colors";
 
 export default function CommentCard() {
-    const { details } = useSelector((state) => state.blog);
+    const details = useSelector((state) => state.blog.details);
 
     // console.log(details);
     return (
@@ -14,7 +14,7 @@ export default function CommentCard() {
             <Box component="div" sx={{ mt: 3 }}>
                 <NewCommentForm />
             </Box>
-            {details?.comments.length > 0 && (
+            {details?.comments?.length > 0 && (
                 <Box component="div">
                     {details?.comments?.map((comment) => {
                         return (

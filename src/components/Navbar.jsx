@@ -37,7 +37,7 @@ const navItems = [
 ];
 
 export default function Navbar(props) {
-    const { currentUser } = useSelector((state) => state.auth);
+    const currentUser = useSelector((state) => state.auth.currentUser);
     const { logout } = useAuthCalls();
     const navigate = useNavigate();
     const { window } = props;
@@ -48,10 +48,18 @@ export default function Navbar(props) {
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+        <Box
+            onClick={handleDrawerToggle}
+            sx={{
+                textAlign: "center",
+                backgroundColor: "black",
+                height: "100vh",
+                color: "white",
+            }}
+        >
             <Button
                 variant="text"
-                sx={{ my: 2, fontSize: "24px" }}
+                sx={{ my: 2, fontSize: "24px", color: "white" }}
                 onClick={() => navigate("/")}
             >
                 BLOGGY
@@ -97,7 +105,7 @@ export default function Navbar(props) {
     return (
         <Box sx={{ display: "flex" }}>
             <CssBaseline />
-            <AppBar component="nav">
+            <AppBar component="nav" sx={{ backgroundColor: "black" }}>
                 <Toolbar
                     sx={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -119,14 +127,24 @@ export default function Navbar(props) {
                                 display: { xs: "none", sm: "inline-block" },
                                 fontSize: "24px",
                                 color: "white",
+                                mr: 2,
                             }}
                             onClick={() => navigate("/")}
                         >
                             BLOGGY
                         </Button>
+                        {navItems.map((item) => (
+                            <Button
+                                key={item.title}
+                                sx={{ color: "#fff", fontSize: "15px" }}
+                                onClick={() => navigate(item.url)}
+                            >
+                                {item.title}
+                            </Button>
+                        ))}
                     </Box>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
-                        {navItems.map((item) => (
+                        {/* {navItems.map((item) => (
                             <Button
                                 key={item.title}
                                 sx={{ color: "#fff" }}
@@ -134,7 +152,7 @@ export default function Navbar(props) {
                             >
                                 {item.title}
                             </Button>
-                        ))}
+                        ))} */}
                         {currentUser ? (
                             <Button
                                 sx={{ color: "#fff" }}

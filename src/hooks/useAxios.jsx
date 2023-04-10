@@ -2,7 +2,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const useAxios = () => {
-    const { token } = useSelector((state) => state.auth);
+    const token = useSelector((state) => state.auth.token);
 
     const axiosPublic = axios.create({
         baseURL: "https://34112.fullstack.clarusway.com/",

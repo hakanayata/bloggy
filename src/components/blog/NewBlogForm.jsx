@@ -27,7 +27,7 @@ export const newBlogSchema = object({
 
 const NewBlogForm = ({ values, errors, touched, handleChange, handleBlur }) => {
     const { getBlogsData } = useBlogCalls();
-    const { categories } = useSelector((state) => state.blog);
+    const categories = useSelector((state) => state.blog.categories);
     const status = [
         {
             id: 1,

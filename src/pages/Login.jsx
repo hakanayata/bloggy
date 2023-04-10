@@ -9,6 +9,11 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
     const { login } = useAuthCalls();
+
+    // const referrer = document.referrer;
+    // const loc = document.location;
+    // console.log(referrer, loc);
+
     return (
         <Container maxWidth="lg">
             <Grid

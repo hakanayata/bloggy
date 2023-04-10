@@ -16,7 +16,7 @@ export default function BlogUpdateForm({
     handleChange,
     touched,
 }) {
-    const { categories } = useSelector((state) => state.blog);
+    const categories = useSelector((state) => state.blog.categories);
     const status = [
         {
             id: 1,
