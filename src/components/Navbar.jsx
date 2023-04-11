@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useAuthCalls from "../hooks/useAuthCalls";
+import { flex } from "../styles/globalStyles";
 
 const drawerWidth = 240;
 const navItems = [
@@ -23,17 +24,9 @@ const navItems = [
         url: "/",
     },
     {
-        title: "New Post",
-        url: "/newblog",
-    },
-    {
         title: "About",
-        url: "/about/",
+        url: "/about",
     },
-    // {
-    //     title: "Login",
-    //     url: "/login/",
-    // },
 ];
 
 export default function Navbar(props) {
@@ -76,26 +69,44 @@ export default function Navbar(props) {
                         </ListItemButton>
                     </ListItem>
                 ))}
+                {currentUser ? (
+                    <>
+                        <ListItem disablePadding>
+                            <ListItemButton
+                                sx={{ textAlign: "center" }}
+                                onClick={() => navigate("/newblog")}
+                            >
+                                <ListItemText primary="New Blog" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton
+                                sx={{ textAlign: "center" }}
+                                onClick={() => navigate("/profile")}
+                            >
+                                <ListItemText primary="Profile" />
+                            </ListItemButton>
+                        </ListItem>
+                        <Button
+                            sx={{ color: "#fff", mt: 1 }}
+                            onClick={() => logout()}
+                            variant="contained"
+                            color="secondary"
+                        >
+                            LOGOUT
+                        </Button>
+                    </>
+                ) : (
+                    <Button
+                        sx={{ color: "#fff" }}
+                        onClick={() => navigate("/login")}
+                        variant="contained"
+                        color="success"
+                    >
+                        LOGIN
+                    </Button>
+                )}
             </List>
-            {currentUser ? (
-                <Button
-                    sx={{ color: "#fff" }}
-                    onClick={() => logout()}
-                    variant="contained"
-                    color="secondary"
-                >
-                    LOGOUT
-                </Button>
-            ) : (
-                <Button
-                    sx={{ color: "#fff" }}
-                    onClick={() => navigate("/login/")}
-                    variant="contained"
-                    color="success"
-                >
-                    LOGIN
-                </Button>
-            )}
         </Box>
     );
 
@@ -143,7 +154,11 @@ export default function Navbar(props) {
                             </Button>
                         ))}
                     </Box>
-                    <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                    <Box
+                        sx={{
+                            display: { xs: "none", sm: "none", md: "block" },
+                        }}
+                    >
                         {/* {navItems.map((item) => (
                             <Button
                                 key={item.title}
@@ -154,18 +169,38 @@ export default function Navbar(props) {
                             </Button>
                         ))} */}
                         {currentUser ? (
-                            <Button
-                                sx={{ color: "#fff" }}
-                                onClick={() => logout()}
-                                variant="contained"
-                                color="secondary"
-                            >
-                                LOGOUT
-                            </Button>
+                            <Box sx={flex}>
+                                <Button
+                                    sx={{ color: "#fff" }}
+                                    onClick={() => navigate("/newblog")}
+                                >
+                                    NEW BLOG
+                                </Button>
+                                <Button
+                                    sx={{ color: "#fff" }}
+                                    onClick={() => navigate("/myblogs")}
+                                >
+                                    MY BLOGS
+                                </Button>
+                                <Button
+                                    sx={{ color: "#fff" }}
+                                    onClick={() => navigate("/profile")}
+                                >
+                                    PROFILE
+                                </Button>
+                                <Button
+                                    sx={{ color: "#fff" }}
+                                    onClick={() => logout()}
+                                    variant="contained"
+                                    color="secondary"
+                                >
+                                    LOGOUT
+                                </Button>
+                            </Box>
                         ) : (
                             <Button
                                 sx={{ color: "#fff" }}
-                                onClick={() => navigate("/login/")}
+                                onClick={() => navigate("/login")}
                                 variant="contained"
                                 color="success"
                             >
@@ -201,3 +236,21 @@ export default function Navbar(props) {
         </Box>
     );
 }
+
+// {/* <List>
+// <ListItem>
+//     <ListItemButton sx={{ textAlign: "center"}}>
+//         <ListItemText primary="New Blog" />
+//     </ListItemButton>
+// </ListItem>
+// <ListItem>
+//     <ListItemButton sx={{ textAlign: "center"}}>
+//         <ListItemText primary="Profile"/>
+//     </ListItemButton>
+// </ListItem>
+// <ListItem>
+//     <ListItemButton sx={{ textAlign: "center"}}>
+//         <ListItemText primary="My Blogs" />
+//     </ListItemButton>
+// </ListItem>
+// </List> */}

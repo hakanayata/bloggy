@@ -42,7 +42,7 @@ export default function CommentCard() {
                                     <Typography variant="body2" color="primary">
                                         {new Date(
                                             comment.time_stamp
-                                        ).toLocaleDateString()}
+                                        ).toLocaleString()}
                                     </Typography>
                                 </Box>
                                 <Divider />

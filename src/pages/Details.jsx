@@ -64,8 +64,8 @@ export default function Details() {
         }
         // setLiked(!liked);
     };
-    // asagiya ? gerekmiyor
-    if (!details) return null;
+    // we wouldn't need ? in return (...) if we'd write the line below
+    // if (!details) return null;
 
     return (
         <Container

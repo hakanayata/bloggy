@@ -31,7 +31,14 @@ const useAuthCalls = () => {
         } catch (error) {
             console.log(error);
             dispatch(fetchFail());
-            toastErrorNotify("Post failed!");
+            if (
+                error.response.data.non_field_errors?.[0] ===
+                "Unable to log in with provided credentials."
+            ) {
+                toastErrorNotify("Wrong email or password!");
+            } else {
+                toastErrorNotify("Error! Please try again later!");
+            }
         }
     };
 
@@ -61,9 +68,20 @@ const useAuthCalls = () => {
             toastSuccessNotify("Signed up succesfully!");
             navigate("/");
         } catch (error) {
-            console.log(error);
             dispatch(fetchFail());
-            toastErrorNotify("Error while signing up!");
+            console.log(error);
+            if (
+                error.response.data.username?.[0] ===
+                "A user with that username already exists."
+            ) {
+                toastErrorNotify("This username already exists!");
+            } else if (
+                error.response.data.email?.[0] === "This field must be unique."
+            ) {
+                toastErrorNotify("Email must be unique!");
+            } else {
+                toastErrorNotify("Register failed! Try again later.");
+            }
         }
     };
 

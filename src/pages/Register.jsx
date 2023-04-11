@@ -46,7 +46,7 @@ const Register = () => {
                     onSubmit={(values, actions) => {
                         register(values);
                         // console.log(actions);
-                        actions.resetForm();
+                        // actions.resetForm();
                         actions.setSubmitting(false);
                     }}
                 ></Formik>

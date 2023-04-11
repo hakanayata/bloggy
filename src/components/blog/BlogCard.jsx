@@ -75,7 +75,7 @@ export default function BlogCard({ blog }) {
                 {blog?.title}
             </Typography>
             <CardContent sx={{ paddingTop: 0.5 }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body1" color="text.secondary">
                     {blog?.content?.slice(0, 70) + "..."}
                 </Typography>
             </CardContent>

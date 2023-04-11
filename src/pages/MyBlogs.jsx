@@ -1,25 +1,30 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useBlogCalls from "../hooks/useBlogCalls";
 import BlogCard from "../components/blog/BlogCard";
 import Grid from "@mui/material/Grid";
 import { flex } from "../styles/globalStyles";
-import { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-export default function Home() {
-    const blogs = useSelector((state) => state.blog.blogs);
+export default function MyBlogs() {
     const { getBlogsData } = useBlogCalls();
-
     useEffect(() => {
         getBlogsData("blogs");
-    }, []); // eslint-disable-line
+    }, []); //eslint-disable-line
 
+    const currentUser = useSelector((state) => state.auth.currentUser);
+    const blogs = useSelector((state) => state.blog.blogs);
+
+    const myBlogs = blogs?.filter(
+        (blog) => blog.author === currentUser.username
+    );
+    // console.log(myBlogs);
     return (
         <div>
-            {blogs?.length > 0 ? (
+            {myBlogs?.length > 0 ? (
                 <Grid container sx={flex} mb={8}>
-                    {blogs?.map((blog) => {
+                    {myBlogs?.map((blog) => {
                         return (
                             <Grid item key={blog.id}>
                                 <BlogCard blog={blog} />
@@ -29,8 +34,8 @@ export default function Home() {
                 </Grid>
             ) : (
                 <Grid container sx={flex} mb={8}>
-                    <Typography>
-                        Nothing to show. Create
+                    <Typography variant="body1" sx={{ fontSize: 20 }}>
+                        Nothing to show. Create{" "}
                         <Link to="/newblog">a new blog ➚</Link>
                     </Typography>
                 </Grid>

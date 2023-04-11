@@ -37,7 +37,7 @@ export default function BlogUpdateForm({
                     display: "flex",
                     flexDirection: "column",
                     gap: 2,
-                    width: { xs: 330, sm: 580, md: 860 },
+                    width: { xs: 330, sm: 580, md: 760 },
                 }}
             >
                 <TextField
