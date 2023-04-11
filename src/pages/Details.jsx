@@ -121,7 +121,9 @@ export default function Details() {
                         aria-label="add to favorites"
                         onClick={handleLike}
                     >
-                        <FavoriteIcon sx={{ color: liked ? "red" : "gray" }} />
+                        <FavoriteIcon
+                            sx={{ color: currentUser && liked && "red" }}
+                        />
                         <Typography variant="small" component="small">
                             {details?.likes}
                         </Typography>

@@ -37,6 +37,7 @@ export default function BlogCard({ blog }) {
                   .length === 1
             : false
     );
+    console.log(liked);
 
     const handleLike = () => {
         if (currentUser) {
@@ -83,7 +84,7 @@ export default function BlogCard({ blog }) {
                 <IconButton aria-label="add to favorites" onClick={handleLike}>
                     <FavoriteIcon
                         sx={{
-                            color: liked ? "red" : "gray",
+                            color: currentUser && liked && "red",
                         }}
                     />
                     <Typography variant="small" component="small">
