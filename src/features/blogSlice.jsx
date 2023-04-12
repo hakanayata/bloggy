@@ -16,7 +16,14 @@ const blogSlice = createSlice({
         },
         getSuccess: (state, { payload: { data, url } }) => {
             state.loading = false;
-            state[url] = data;
+            if (url === "blogs") {
+                state[url] = data.sort(
+                    (a, b) =>
+                        new Date(b.publish_date) - new Date(a.publish_date)
+                );
+            } else {
+                state[url] = data;
+            }
         },
         getSuccessDetails: (state, { payload: { data } }) => {
             state.loading = false;
