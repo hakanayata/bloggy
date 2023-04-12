@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sortByField } from "../helper/sortData";
 
 const blogSlice = createSlice({
     name: "blog",
@@ -17,10 +18,7 @@ const blogSlice = createSlice({
         getSuccess: (state, { payload: { data, url } }) => {
             state.loading = false;
             if (url === "blogs") {
-                state[url] = data.sort(
-                    (a, b) =>
-                        new Date(b.publish_date) - new Date(a.publish_date)
-                );
+                state[url] = data.sort(sortByField("publish_date"));
             } else {
                 state[url] = data;
             }
@@ -29,9 +27,7 @@ const blogSlice = createSlice({
             state.loading = false;
             state.details = {
                 ...data,
-                comments: data?.comments.sort(
-                    (a, b) => new Date(b.time_stamp) - new Date(a.time_stamp)
-                ),
+                comments: data?.comments.sort(sortByField("time_stamp")),
             };
         },
         fetchFail: (state) => {
