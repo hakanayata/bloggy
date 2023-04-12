@@ -9,12 +9,13 @@ export default function Footer() {
     return (
         <Box
             sx={{
-                height: 30,
+                height: 40,
                 backgroundColor: "black",
                 color: "#eee",
                 position: "fixed",
                 width: "100vw",
                 bottom: 0,
+                p: 1,
                 ...flex,
             }}
         >

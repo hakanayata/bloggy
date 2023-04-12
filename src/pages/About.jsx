@@ -18,7 +18,7 @@ export default function About() {
                 // border: "1px navy solid",
                 boxShadow: 6,
                 borderRadius: "35px",
-                maxWidth: { xs: 375, sm: 600, md: 880 },
+                maxWidth: { xs: 350, sm: 580, md: 860 },
                 p: 2,
                 mb: 4,
             }}

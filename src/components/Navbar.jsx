@@ -82,6 +82,14 @@ export default function Navbar(props) {
                         <ListItem disablePadding>
                             <ListItemButton
                                 sx={{ textAlign: "center" }}
+                                onClick={() => navigate("/myblogs")}
+                            >
+                                <ListItemText primary="My Blogs" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton
+                                sx={{ textAlign: "center" }}
                                 onClick={() => navigate("/profile")}
                             >
                                 <ListItemText primary="Profile" />
@@ -98,7 +106,7 @@ export default function Navbar(props) {
                     </>
                 ) : (
                     <Button
-                        sx={{ color: "#fff" }}
+                        sx={{ color: "#fff", mt: 1 }}
                         onClick={() => navigate("/login")}
                         variant="contained"
                         color="success"
@@ -114,11 +122,14 @@ export default function Navbar(props) {
         window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", mb: 1 }}>
             <CssBaseline />
             <AppBar component="nav" sx={{ backgroundColor: "black" }}>
                 <Toolbar
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                    }}
                 >
                     <IconButton
                         color="inherit"
@@ -230,7 +241,7 @@ export default function Navbar(props) {
                     {drawer}
                 </Drawer>
             </Box>
-            <Box component="main" sx={{ p: 2 }}>
+            <Box component="main">
                 <Toolbar />
             </Box>
         </Box>
