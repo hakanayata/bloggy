@@ -76,7 +76,7 @@ export default function Details() {
                 borderRadius: "35px",
                 maxWidth: { xs: 375, sm: 600, md: 880 },
                 p: 2,
-                mb: 4,
+                mb: 8,
             }}
         >
             <Box

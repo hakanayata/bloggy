@@ -19,13 +19,19 @@ export default function Home() {
         <div>
             {blogs?.length > 0 ? (
                 <Grid container sx={flex} mb={8}>
-                    {blogs?.map((blog) => {
-                        return (
-                            <Grid item key={blog.id}>
-                                <BlogCard blog={blog} />
-                            </Grid>
-                        );
-                    })}
+                    {[...blogs]
+                        ?.sort(
+                            (b1, b2) =>
+                                new Date(b2.publish_date) -
+                                new Date(b1.publish_date)
+                        )
+                        ?.map((blog) => {
+                            return (
+                                <Grid item key={blog.id}>
+                                    <BlogCard blog={blog} />
+                                </Grid>
+                            );
+                        })}
                 </Grid>
             ) : (
                 <Grid container sx={flex} mb={8}>
