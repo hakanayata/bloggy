@@ -27,7 +27,12 @@ const blogSlice = createSlice({
         },
         getSuccessDetails: (state, { payload: { data } }) => {
             state.loading = false;
-            state.details = data;
+            state.details = {
+                ...data,
+                comments: data?.comments.sort(
+                    (a, b) => new Date(b.time_stamp) - new Date(a.time_stamp)
+                ),
+            };
         },
         fetchFail: (state) => {
             state.loading = false;
