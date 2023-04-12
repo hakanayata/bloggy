@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -24,7 +24,7 @@ export default function BlogCard({ blog }) {
 
     const handleNavigation = () => {
         if (currentUser) {
-            navigate(`details/${blog?.id}`);
+            navigate(`/details/${blog?.id}`);
         } else {
             // navigate(`details/${blog?.id}`);
             toastWarnNotify("You must be logged in!");

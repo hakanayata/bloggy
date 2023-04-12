@@ -24,13 +24,13 @@ export default function AppRouter() {
                 <Route path="details/:id" element={<PrivateRouter />}>
                     <Route path="" element={<Details />} />
                 </Route>
-                <Route path="newblog" element={<PrivateRouter />}>
+                <Route path="/newblog" element={<PrivateRouter />}>
                     <Route path="" element={<NewBlog />} />
                 </Route>
-                <Route path="profile" element={<PrivateRouter />}>
+                <Route path="/profile" element={<PrivateRouter />}>
                     <Route path="" element={<Profile />} />
                 </Route>
-                <Route path="myblogs" element={<PrivateRouter />}>
+                <Route path="/myblogs" element={<PrivateRouter />}>
                     <Route path="" element={<MyBlogs />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
