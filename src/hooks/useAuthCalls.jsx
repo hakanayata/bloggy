@@ -25,7 +25,7 @@ const useAuthCalls = () => {
                 userInfo
             );
             dispatch(loginSuccess(data));
-            toastSuccessNotify("Signed in!");
+            toastSuccessNotify("Logged in!");
             // navigate(-1);
             navigate("/");
         } catch (error) {

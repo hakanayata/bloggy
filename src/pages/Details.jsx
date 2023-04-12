@@ -60,7 +60,7 @@ export default function Details() {
         if (currentUser) {
             toggleLike(details?.id);
         } else {
-            toastErrorNotify("You must be signed in!");
+            toastErrorNotify("You must be logged in!");
         }
         // setLiked(!liked);
     };

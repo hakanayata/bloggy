@@ -10,6 +10,7 @@ import Details from "../pages/Details";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
 import MyBlogs from "../pages/MyBlogs";
+import Footer from "../components/Footer";
 
 export default function AppRouter() {
     return (
@@ -34,6 +35,7 @@ export default function AppRouter() {
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            <Footer />
         </BrowserRouter>
     );
 }

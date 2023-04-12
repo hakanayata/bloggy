@@ -26,8 +26,8 @@ export default function BlogCard({ blog }) {
         if (currentUser) {
             navigate(`details/${blog?.id}`);
         } else {
-            navigate(`details/${blog?.id}`);
-            toastWarnNotify("You must be signed in!");
+            // navigate(`details/${blog?.id}`);
+            toastWarnNotify("You must be logged in!");
         }
     };
 
@@ -37,13 +37,12 @@ export default function BlogCard({ blog }) {
                   .length === 1
             : false
     );
-    console.log(liked);
 
     const handleLike = () => {
         if (currentUser) {
             toggleLike(blog.id).then((success) => success && setLiked(!liked));
         } else {
-            toastErrorNotify("You must be signed in!");
+            toastErrorNotify("You must be logged in!");
         }
     };
 

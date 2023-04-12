@@ -56,7 +56,7 @@ const LoginForm = ({ values, handleBlur, handleChange, touched, errors }) => {
                         helperText={touched.password && errors.password}
                     />
                     <Button type="submit" variant="contained" size="large">
-                        Sign In
+                        Login
                     </Button>
                 </Box>
             </Form>

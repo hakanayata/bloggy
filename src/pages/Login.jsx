@@ -33,7 +33,7 @@ export default function Login() {
                     align="center"
                     sx={{ marginBottom: "1rem" }}
                 >
-                    Sign In
+                    Login
                 </Typography>
                 <Formik
                     initialValues={{

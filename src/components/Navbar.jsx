@@ -93,7 +93,7 @@ export default function Navbar(props) {
                             variant="contained"
                             color="secondary"
                         >
-                            LOGOUT
+                            Logout
                         </Button>
                     </>
                 ) : (
@@ -103,7 +103,7 @@ export default function Navbar(props) {
                         variant="contained"
                         color="success"
                     >
-                        LOGIN
+                        Login
                     </Button>
                 )}
             </List>
@@ -194,7 +194,7 @@ export default function Navbar(props) {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    LOGOUT
+                                    Logout
                                 </Button>
                             </Box>
                         ) : (
@@ -204,7 +204,7 @@ export default function Navbar(props) {
                                 variant="contained"
                                 color="success"
                             >
-                                LOGIN
+                                Login
                             </Button>
                         )}
                     </Box>

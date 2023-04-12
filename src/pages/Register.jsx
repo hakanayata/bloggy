@@ -28,7 +28,7 @@ const Register = () => {
                     align="center"
                     sx={{ marginBottom: "1rem" }}
                 >
-                    Sign Up
+                    Register
                 </Typography>
                 <Formik
                     initialValues={{
@@ -58,7 +58,7 @@ const Register = () => {
                     <Typography variant="small">
                         Do you have an account?{" "}
                     </Typography>
-                    <Link to="/login">Sign in now ➚</Link>
+                    <Link to="/login">Log in now ➚</Link>
                 </Box>
             </Grid>
         </Container>
