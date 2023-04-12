@@ -9,22 +9,20 @@ import { Link } from "react-router-dom";
 
 export default function MyBlogs() {
     const { getBlogsData } = useBlogCalls();
+    const currentUser = useSelector((state) => state.auth.currentUser);
+
     useEffect(() => {
-        getBlogsData("blogs");
+        getBlogsData("blogs", currentUser.id);
     }, []); //eslint-disable-line
 
-    const currentUser = useSelector((state) => state.auth.currentUser);
     const blogs = useSelector((state) => state.blog.blogs);
 
-    const myBlogs = blogs?.filter(
-        (blog) => blog.author === currentUser.username
-    );
-    // console.log(myBlogs);
+    // console.log(blogs);
     return (
         <div>
-            {myBlogs?.length > 0 ? (
+            {blogs?.length > 0 ? (
                 <Grid container sx={flex} mb={8}>
-                    {myBlogs?.map((blog) => {
+                    {blogs?.map((blog) => {
                         return (
                             <Grid item key={blog.id}>
                                 <BlogCard blog={blog} />

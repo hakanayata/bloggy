@@ -9,7 +9,7 @@ export default function Footer() {
     return (
         <Box
             sx={{
-                height: 50,
+                height: 30,
                 backgroundColor: "black",
                 color: "#eee",
                 position: "fixed",
@@ -18,7 +18,7 @@ export default function Footer() {
                 ...flex,
             }}
         >
-            <Typography variant="body1" component="small" fontSize={14}>
+            <Typography variant="body1" component="small" fontSize={13}>
                 Developed by{" "}
                 <Link
                     underline="hover"
@@ -40,7 +40,7 @@ export default function Footer() {
                     Clarusway
                 </Link>
                 's front-end course
-                <Typography variant="body1" component="small" fontSize={14}>
+                <Typography variant="body1" component="small" fontSize={12}>
                     {" "}
                     @2023
                 </Typography>

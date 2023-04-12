@@ -10,9 +10,10 @@ import { Link } from "react-router-dom";
 export default function Login() {
     const { login } = useAuthCalls();
 
-    // const referrer = document.referrer;
+    const referrer = document.referrer;
+    const thisURL = document.URL;
     // const loc = document.location;
-    // console.log(referrer, loc);
+    console.log(referrer, thisURL);
 
     return (
         <Container maxWidth="lg">
@@ -49,7 +50,7 @@ export default function Login() {
                     validationSchema={loginSchema}
                     component={(props) => <LoginForm {...props} />}
                     onSubmit={(values, actions) => {
-                        login(values);
+                        login(values, referrer);
                         // console.log(actions);
                         actions.resetForm();
                         actions.setSubmitting(false);

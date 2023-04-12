@@ -16,7 +16,7 @@ const useAuthCalls = () => {
 
     const BASE_URL = "https://34112.fullstack.clarusway.com/";
 
-    const login = async (userInfo) => {
+    const login = async (userInfo, path = null) => {
         dispatch(fetchStart());
         try {
             // payload: username, email, password
@@ -27,7 +27,7 @@ const useAuthCalls = () => {
             dispatch(loginSuccess(data));
             toastSuccessNotify("Logged in!");
             // navigate(-1);
-            navigate("/");
+            navigate(`/`);
         } catch (error) {
             console.log(error);
             dispatch(fetchFail());
