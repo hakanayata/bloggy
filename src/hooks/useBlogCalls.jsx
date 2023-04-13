@@ -108,7 +108,7 @@ const useBlogCalls = () => {
         dispatch(fetchStart());
         try {
             await axiosWithToken.post(`api/likes/${id}/`);
-            if (!url.includes("myblogs")) {
+            if (url !== null && !url.includes("myblogs")) {
                 getBlogsData("blogs");
                 await getBlogsDetails("blogs", id);
             } else {

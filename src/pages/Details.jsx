@@ -58,7 +58,7 @@ export default function Details() {
 
     const handleLike = () => {
         if (currentUser) {
-            toggleLike(details?.id);
+            toggleLike(details?.id, null, currentUser.id);
         } else {
             toastErrorNotify("You must be logged in!");
         }
