@@ -1,5 +1,7 @@
 # Bloggy App
-Bloggy App is a full-stack web application built with React, Django and styled with Material UI. The backend was given and ready to work with. The goal was to develop a frontend that would work in conjunction with the backend without any problems.
+Bloggy App is a full-stack web application built with React, Django and styled with Material UI. 
+
+The backend was given and ready to work with. The goal was to develop a frontend that would work in conjunction with the backend without any problems.
 
 This app allows users to write an publish blog posts with a title, date, image, and detailed content. Users can also like and comment on posts, and save drafts for future editing. Here's how to get started:
 
