@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Bloggy App
+Bloggy App is a full-stack web application built with React, Django and styled with Material UI. The backend was given and ready to work with. The goal was to develop a frontend that would work in conjunction with the backend without any problems.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app allows users to write an publish blog posts with a title, date, image, and detailed content. Users can also like and comment on posts, and save drafts for future editing. Here's how to get started:
 
-## Available Scripts
+## Demo
+The App can be found at: [Bloggy](https://bloggy.hakanayata.com)
 
-In the project directory, you can run:
+### Prerequisites
+To run this app, you will need to have the following installed on your machine:
 
-### `yarn start`
+- Node.js (v.18.12.1 recommended)
+- yarn (v1.22.19 rec.) or npm (v8.19.2 rec.)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone this repository to your local machine:
+   
+   ```bash
+   git clone https://github.com/hakanayata/bloggy.git
+   ```
 
-### `yarn test`
+2. Change directory into the cloned repository:
+    ```bash
+    cd bloggy
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install the required packages.
+    
+    ```bash
+    yarn install
+    ```
+    or
+    ```bash
+    npm install
+    ```
 
-### `yarn build`
+4. Start the server.
+   
+    ```bash
+    yarn start
+    ```
+    or
+    ```bash
+    npm start
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. Open your browser and go to: `http://localhost:3000` to view the application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `yarn eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Create a new post by clicking the "New Blog" button in the navigation bar.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Enter the post details, including the title, date, image, and detailed content.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Save your post as a draft or publish it immediately. You can see your drafts by navigating to the "My Blogs" page.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. View your published post by visiting the home page. 
 
-## Learn More
+5. Like posts by clicking the corresponding heart-shaped button.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+6. Comment on posts by first navigating to blog details' page by clicking the "Read More" button. Then click on speech-box-shaped icon to open up the comment section.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+7. Edit/update your blog post by first navigating to blog details' page by clicking the "Read More" button, then clicking the pen icon in the lower-right of the blog card.
 
-### Code Splitting
+8. Delete your blog post by first navigating to blog details' page by clicking the the "Read More" button, then clicking the trash can icon in the lower-right of the blog card.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Feedback
+You might be able to test this application at: [bloggy.hakanayata.com](https://bloggy.hakanayata.com).
+I would appreciate any kind of feedback. (See ***Contact*** below)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contact
+I'm [Hakan](https://hakanayata.com). You could reach me at info@hakanayata.com
 
-### Making a Progressive Web App
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```javascript
+    consolog.log("Thank you for visiting")
+```
